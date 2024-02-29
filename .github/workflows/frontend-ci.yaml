@@ -1,4 +1,4 @@
-name: Frontend github action workflow
+name: Frontend github action workflows
 
 on: 
   workflow_dispatch:
