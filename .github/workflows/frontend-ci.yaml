@@ -17,8 +17,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.14'
-      - name: Install Dependencies
-        run: cd starter/frontend && npm ci
       - name: Lint
         run: cd starter/frontend && npm run lint        
         continue-on-error: false
@@ -31,8 +29,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.14'
-      - name: Install Dependencies
-        run: cd starter/frontend && npm ci
       - name: Run Tests
         run: cd starter/frontend && npm test
         continue-on-error: false
@@ -41,5 +37,11 @@ jobs:
     needs: [lint, test]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Node.js 
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.14'
       - name: Build front end application
         run: cd starter/frontend && npm run build
