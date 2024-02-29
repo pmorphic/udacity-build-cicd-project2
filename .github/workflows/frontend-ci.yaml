@@ -42,4 +42,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build front end application
-        run: echo 'done successfully'
+        run: cd starter/frontend && npm run build
