@@ -7,18 +7,19 @@ on:
       - 'main'
     paths:
       - 'starter/backend/**'
+defaults:
+  run:
+    working-directory: starter/backend
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Change dir
-        run: cd starter/backend
       - name: Install dependencies
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
-          command: cd starter/backend && install -d
+          command: install -d
       - name: Lint
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
@@ -29,8 +30,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Change dir
-        run: cd starter/backend        
       - name: Install dependencies
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
@@ -46,9 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Change dir
-        run: cd starter/backend        
+        uses: actions/checkout@v3  
       -
         # Setting up Docker Buildx with docker-container driver is required
         # at the moment to be able to use a subdirectory with Git context
