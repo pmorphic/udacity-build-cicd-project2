@@ -13,28 +13,28 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Set up Node.js 
-        uses: actions/setup-node@v3
+      - name: Install dependencies
+        uses: VaultVulp/action-pipenv@v2.0.1
         with:
-          node-version: latest
-      - name: Install Dependencies
-        run: cd starter/frontend && npm ci
+          command: install -d
       - name: Lint
-        run: cd starter/frontend && npm run lint        
-        continue-on-error: false
+        uses: VaultVulp/action-pipenv@v2.0.1
+        with:
+          command: run lint
+        continue-on-error: false          
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Set up Node.js 
-        uses: actions/setup-node@v3
+      - name: Install dependencies
+        uses: VaultVulp/action-pipenv@v2.0.1
         with:
-          node-version: latest
-      - name: Install Dependencies
-        run: cd starter/frontend && npm ci
-      - name: Run Tests
-        run: cd starter/frontend && npm test
+          command: install -d
+      - name: Test
+        uses: VaultVulp/action-pipenv@v2.0.1
+        with:
+          command: run test
         continue-on-error: false
 
   build:
@@ -43,11 +43,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Set up Node.js 
-        uses: actions/setup-node@v3
+      -
+        # Setting up Docker Buildx with docker-container driver is required
+        # at the moment to be able to use a subdirectory with Git context
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
         with:
-          node-version: latest
-      - name: Install Dependencies
-        run: cd starter/frontend && npm ci
-      - name: Build front end application
-        run: cd starter/frontend && npm run build
+          context: "{{defaultContext}}:starter/backend"
+          push: false
+          tags: backend/ci
+
