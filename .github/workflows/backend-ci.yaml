@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Change dir
+        run: cd starter/backend
       - name: Install dependencies
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
@@ -27,6 +29,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Change dir
+        run: cd starter/backend        
       - name: Install dependencies
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
@@ -43,6 +47,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Change dir
+        run: cd starter/backend        
       -
         # Setting up Docker Buildx with docker-container driver is required
         # at the moment to be able to use a subdirectory with Git context
