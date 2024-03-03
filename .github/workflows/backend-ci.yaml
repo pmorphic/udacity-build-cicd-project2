@@ -6,7 +6,7 @@ on:
     branches:
       - 'main'
     paths:
-      - './starter/backend/**'
+      - 'starter/backend/**'
 defaults:
   run:
     working-directory: starter/backend
