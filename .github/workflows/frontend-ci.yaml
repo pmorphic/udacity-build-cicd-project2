@@ -104,7 +104,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: "{{defaultContext}}:frontend"
+          context: "{{defaultContext}}:starter/frontend"
           push: false
           tags: frontend/ci
           file: starter/frontend/Dockerfile
