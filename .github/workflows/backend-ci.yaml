@@ -24,12 +24,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pipenv
-      - name: cache pipenv
-        id: cache-pipenv
-        uses: actions/cache@v2
-        with:
-          path: ./.venv
-          key: ${{ runner.os }}-${{ matrix.python-version }}-pipenv-${{ hashFiles('starter/backend/Pipfile.lock') }}
       - name: install dependencies
         working-directory: ./starter/backend
         if: steps.cache-pipenv.outputs.cache-hit != 'true'
