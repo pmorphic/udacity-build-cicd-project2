@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
-          command: install -d
+          command: cd starter/backend && install -d
       - name: Lint
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
