@@ -107,5 +107,4 @@ jobs:
           context: "{{defaultContext}}:starter/frontend"
           push: false
           tags: frontend/ci
-          file: starter/frontend/Dockerfile
 
