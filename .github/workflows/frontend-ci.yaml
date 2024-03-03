@@ -95,3 +95,18 @@ jobs:
         run: cd starter/frontend && npm install
       - name: Build front end application
         run: cd starter/frontend && npm run build
+      - name: Build Docker container
+        run: cd starter/frontend && npm run build
+      -
+        # Setting up Docker Buildx with docker-container driver is required
+        # at the moment to be able to use a subdirectory with Git context
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Build and push
+        uses: cd starter/frontend && docker/build-push-action@v5
+        with:
+          context: "{{defaultContext}}:frontend"
+          push: false
+          tags: frontend/ci
+
