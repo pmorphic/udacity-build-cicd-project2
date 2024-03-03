@@ -28,7 +28,7 @@ jobs:
         id: cache-pipenv
         uses: actions/cache@v2
         with:
-          path: starter/backend/.venv
+          path: ./.venv
           key: ${{ runner.os }}-${{ matrix.python-version }}-pipenv-${{ hashFiles('starter/backend/Pipfile.lock') }}
       - name: install dependencies
         working-directory: ./starter/backend
