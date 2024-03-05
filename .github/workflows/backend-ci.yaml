@@ -1,4 +1,4 @@
-name: Backend github action workflows
+name: Backend Continuous Integration
 
 on: 
   workflow_dispatch:

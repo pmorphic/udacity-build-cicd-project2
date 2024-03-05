@@ -1,4 +1,4 @@
-name: Frontend github action workflows
+name: Frontend Continuous Integration
 
 on: 
   workflow_dispatch:
@@ -7,6 +7,10 @@ on:
       - 'main'
     paths:
       - 'starter/frontend/**'
+defaults:
+  run:
+    working-directory: starter/frontend
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -33,9 +37,9 @@ jobs:
         run: npm list
 
       - name: Install Dependencies
-        run: cd starter/frontend && npm install
+        run: npm install
       - name: Lint
-        run: cd starter/frontend && npm run lint        
+        run: npm run lint        
         continue-on-error: false
   test:
     runs-on: ubuntu-latest
@@ -62,9 +66,9 @@ jobs:
         run: npm list
 
       - name: Install Dependencies
-        run: cd starter/frontend && npm install
+        run: npm install
       - name: Run Tests
-        run: cd starter/frontend && npm test
+        run: npm test
         continue-on-error: false
 
   build:
@@ -92,9 +96,9 @@ jobs:
         continue-on-error: true
         run: npm list
       - name: Install Dependencies
-        run: cd starter/frontend && npm install
+        run: npm install
       - name: Build front end application
-        run: cd starter/frontend && npm run build
+        run: npm run build
       -
         # Setting up Docker Buildx with docker-container driver is required
         # at the moment to be able to use a subdirectory with Git context
@@ -104,7 +108,6 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: "{{defaultContext}}:starter/frontend"
           push: false
           tags: frontend/ci
 
