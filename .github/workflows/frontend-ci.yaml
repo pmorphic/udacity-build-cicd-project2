@@ -92,10 +92,8 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: List the state of node modules
+        name: Install Dependencies
         continue-on-error: true
-        run: npm list
-      - name: Install Dependencies
         run: npm install
       - name: Build front end application
         run: npm run build
@@ -108,6 +106,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
+          context: "{{defaultContext}}:starter/frontend"        
           push: false
           tags: frontend/ci
 
