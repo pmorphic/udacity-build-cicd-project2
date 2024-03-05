@@ -32,10 +32,12 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: Install Dependencies
+        name: List the state of node modules
         continue-on-error: true
-        run: npm install
+        run: npm list
 
+      - name: Install Dependencies
+        run: npm install
       - name: Lint
         run: npm run lint        
         continue-on-error: false
@@ -59,10 +61,12 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: Install Dependencies
+        name: List the state of node modules
         continue-on-error: true
-        run: npm install
+        run: npm list
 
+      - name: Install Dependencies
+        run: npm install
       - name: Run Tests
         run: npm test
         continue-on-error: false
@@ -88,8 +92,10 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: Install Dependencies
+        name: List the state of node modules
         continue-on-error: true
+        run: npm list
+      - name: Install Dependencies
         run: npm install
       - name: Build front end application
         run: npm run build
