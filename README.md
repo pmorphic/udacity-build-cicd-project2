@@ -297,7 +297,7 @@ cd starter/frontend
 npm ci
 
 # Run local development server with hot reloading and point to the backend default
-REACT_APP_MOVIE_API_URL=http://localhost:5000 npm start
+REACT_APP_MOVIE_API_URL=http://localhost:5000 npm start 
 ```
 
 To build the frontend application for a production deployment, they use the following commands:
