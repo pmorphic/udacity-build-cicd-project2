@@ -76,9 +76,9 @@ jobs:
         run: |
           pipenv install --dev
 
-      - name: run lint
+      - name: run test
         run: |
-          pipenv run test     
+          FAIL_TEST=true pipenv run test     
         continue-on-error: false      
 
   build:
