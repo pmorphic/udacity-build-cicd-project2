@@ -43,7 +43,7 @@ jobs:
 
       - name: run lint
         run: |
-          pipenv run lint     
+          pipenv run lint-fail     
         continue-on-error: false          
 
   test:
@@ -76,7 +76,7 @@ jobs:
         run: |
           pipenv install --dev
 
-      - name: run lint
+      - name: run test
         run: |
           pipenv run test     
         continue-on-error: false      
