@@ -12,6 +12,7 @@ env:
   ECR_REPOSITORY: frontend
   EKS_CLUSTER_NAME: cluster 
   AWS_REGION: us-east-1
+  MOVIE_API_BASE_URL: adc259fb3530c48bf91eb333f9414e3c-1243542567.us-east-1.elb.amazonaws.com
 
 defaults:
   run:
@@ -103,7 +104,7 @@ jobs:
           context: "{{defaultContext}}:starter/frontend"
           push: true
           tags: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
-          build-args: REACT_APP_MOVIE_API_URL=http://localhost:5000
+          build-args: REACT_APP_MOVIE_API_URL=${{ env.MOVIE_API_BASE_URL }}
           provenance: false
 
       - name: Update kube config
