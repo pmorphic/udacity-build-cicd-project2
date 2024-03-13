@@ -43,7 +43,7 @@ jobs:
 
       - name: run lint
         run: |
-          pipenv run lint-fail     
+          pipenv run lint     
         continue-on-error: false          
 
   test:
