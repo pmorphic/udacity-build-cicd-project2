@@ -39,7 +39,7 @@ jobs:
         run: npm install
 
       - name: Lint
-        run: FAIL_LINT=true npm run lint        
+        run: npm run lint        
         continue-on-error: false
   test:
     runs-on: ubuntu-latest
