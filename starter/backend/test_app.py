@@ -9,7 +9,7 @@ def testing_movies_endpoint_returns_200():
         assert response.status_code == status_code
 
 
-def test_movies_endpoint_returns_json():
+def testing_movies_endpoint_returns_json():
     with app.test_client() as client:
         response = client.get("/movies/")
         assert response.content_type == "application/json"
