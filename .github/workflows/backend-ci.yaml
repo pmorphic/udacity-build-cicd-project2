@@ -78,7 +78,7 @@ jobs:
 
       - name: run test
         run: |
-          FAIL_TEST=true pipenv run test     
+          pipenv run test     
         continue-on-error: false      
 
   build:
