@@ -15,7 +15,7 @@ def test_movies_endpoint_returns_json():
         assert response.content_type == "application/json"
 
 
-def test_movies_endpoint_returns_valid_data():
+def testing_movies_endpoint_returns_valid_data():
     with app.test_client() as client:
         response = client.get("/movies/")
         data = response.get_json()
